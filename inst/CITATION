@@ -7,31 +7,21 @@ pkgVer <- function(pkg) {
 c(
 
     bibentry(bibtype="manual",
-        title = "regutools: an R package for data extraction from RegulonDB",
+        title = "RSATtools: an R package interacting with the RSAT web services",
         author = personList(
-            as.person("Carmina Barberena-Jonas"),
             as.person("Joselyn Chavez"),
-            as.person("Jesus Emiliano Sotelo-Fonseca"),
-            as.person("Jose Alquicira-Hernandez"),
-            as.person("Heladia Salgado"),
-            as.person("Leonardo Collado-Torres"),
-            as.person("Alejandro Reyes")
+            as.person("Jose Alquicira-Hernandez")
         ),
         year = format(Sys.Date(), "%Y"),
-        url = "http://www.bioconductor.org/packages/regutools",
-        note = pkgVer('regutools'),
-        doi = '10.18129/B9.bioc.regutools'
+        url = "http://www.bioconductor.org/packages/RSATtools",
+        note = pkgVer('RSATtools'),
+        doi = '10.18129/B9.bioc.RSATtools'
     ),
     bibentry(bibtype="article",
-        title = "Programmatic access to bacterial regulatory networks with regutools",
+        title = "RSATtools: an R package interacting with the RSAT web services",
         author = personList(
-            as.person("Carmina Barberena-Jonas"),
             as.person("Joselyn Chavez"),
-            as.person("Jesus Emiliano Sotelo-Fonseca"),
-            as.person("Jose Alquicira-Hernandez"),
-            as.person("Heladia Salgado"),
-            as.person("Leonardo Collado-Torres"),
-            as.person("Alejandro Reyes")
+            as.person("Jose Alquicira-Hernandez")
         ),
         year = 2020,
         journal = "bioRxiv",

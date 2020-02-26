@@ -13,25 +13,28 @@ knitr::opts_chunk$set(
 )
 ```
 
-# regutools
+# RSATtools
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.org/ComunidadBioInfo/regutools.svg?branch=master)](https://travis-ci.org/ComunidadBioInfo/regutools)
+[![Travis build status](https://travis-ci.org/ComunidadBioInfo/RSATtools.svg?branch=master)](https://travis-ci.org/ComunidadBioInfo/RSATtools)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![Codecov test coverage](https://codecov.io/gh/ComunidadBioInfo/regutools/branch/master/graphs/badge.svg)](https://codecov.io/gh/ComunidadBioInfo/regutools?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/ComunidadBioInfo/RSATtools/branch/master/graphs/badge.svg)](https://codecov.io/gh/ComunidadBioInfo/RSATtools?branch=master)
+[![BioC status](http://www.bioconductor.org/shields/build/release/bioc/RSATtools.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/RSATtools)
 <!-- badges: end -->
 
-The goal of `regutools` is to provide an R interface for extracting and processing data from [RegulonDB](http://regulondb.ccg.unam.mx/).
+The goal of `RSATtools` is to provide an interface to the RSAT collection of web services http://embnet.ccg.unam.mx/rsat/ from R and is integrated in the Bioconductor ecosystem.  This package was created as a collaboration by members of the [Community of Bioinformatics Software Developers](https://comunidadbioinfo.github.io/) (CDSB in Spanish).
+
+For more details, please check the [documentation website](http://comunidadbioinfo.github.io/RSATtools) or the Bioconductor package landing page [here](https://bioconductor.org/packages/RSATtools).
 
 ## Installation
 
-You can install the released version of `regutools` from [Bioconductor](http://bioconductor.org/) with:
+You can install the released version of `RSATtools` from [Bioconductor](http://bioconductor.org/) with:
 
 ```{r 'install release', eval = FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
-BiocManager::install("regutools")
+BiocManager::install("RSATtools")
 
 ## Check that you have a valid Bioconductor installation
 BiocManager::valid()
@@ -40,51 +43,51 @@ BiocManager::valid()
 And the development version from [GitHub](https://github.com/) with:
 
 ```{r 'install devel', eval = FALSE}
-BiocManager::install("ComunidadBioinfo/regutools")
+BiocManager::install("ComunidadBioinfo/RSATtools")
 ```
 
 ## Example
 
-This is a basic example which shows you how to use `regutools`. For more details, please check the vignette.
+This is a basic example which shows you how to use `RSATtools`. For more details, please check the vignette.
 
 ```{r example}
-library('regutools')
-## basic example code
+library('RSATtools')
 
-## Connect to the RegulonDB database if necessary
-if(!exists('regulondb_conn')) regulondb_conn <- connect_database()
-
-## Build a regulondb object
-e_coli_regulondb <-
-    regulondb(
-        database_conn = regulondb_conn,
-        organism = "E.coli",
-        database_version = "1",
-        genome_version = "1"
+## Get 5 random protein sequences of length 100 in fasta format.
+## Use number 300 as seed.
+res <- RSAT(
+    method = "random_seq",
+    parameters = list(
+        sequence_length = 100,
+        repetition = 5,
+        type = "protein",
+        seed = 300,
+        format = "fasta"
     )
-
-## Get the araC regulators
-araC_regulation <-
-    get_gene_regulators(
-        e_coli_regulondb,
-        genes = c("araC"),
-        format = "multirow",
-        output.type = "TF"
-    )
-
-## Summarize the araC regulation
-get_regulatory_summary(e_coli_regulondb, araC_regulation)
+)
+cat(res)
 ```
 
 # Citation
 
-Below is the citation output from using `citation('regutools')` in R. Please 
-run this yourself to check for any updates on how to cite __regutools__.
+Below is the citation output from using `citation('RSATtools')` in R. Please 
+run this yourself to check for any updates on how to cite __RSATtools__.
 
 ```{r 'citation'}
-citation('regutools')
+citation('RSATtools')
 ```
 
-# Testing
+# Development tools
 
-Testing on Bioc-devel is feasible thanks to [R Travis](http://docs.travis-ci.com/user/languages/r/).
+* Testing on Bioc-devel is possible thanks to [R Travis](http://docs.travis-ci.com/user/languages/r/).
+* Code coverage assessment is possible thanks to [codecov](https://codecov.io/gh).
+* The [documentation website](http://comunidadbioinfo.github.io/RSATtools) is automatically updated thanks to `r BiocStyle::CRANpkg('pkgdown')` and `r BiocStyle::Githubpkg('ropenscilabs/travis')`.
+
+# RSAT
+
+<a href="http://embnet.ccg.unam.mx"><img src="http://embnet.ccg.unam.mx/rsat/images/RSAT_20_Ann_logo.jpg" width="150px"></a>
+
+# A CDSB community project
+
+<a href="https://comunidadbioinfo.github.io/"><img src="https://comunidadbioinfo.github.io/img/Logo_texto-768x107.png"></a>
+

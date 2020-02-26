@@ -1,50 +1,28 @@
-Package: regutools
-Title: regutools: an R package for data extraction from RegulonDB
+Package: RSATtools
+Title: RSATtools: an R package interacting with the RSAT web services
 Version: 0.99.0
 Date: 2020-02-26
 Authors@R: c(
-    person("Carmina", "Barberena-Jonas", email = "car.barjon@gmail.com",
-        role = c("aut")),
     person ("Joselyn", "Chavez", email =  "joselynchavezf@gmail.com",
         role = c("aut", "cre"), comment = c(ORCID = "0000-0002-4974-4591")),
-    person(c("Jesus", "E."), "Sotelo-Fonseca", email = "jemilianosf@gmail.com",
-        role = c("aut")),
     person("Jose", "Alquicira-Hernandez", email = "joseah@lcg.unam.mx",
-        role = c("ctb"), comment = c(ORCID = "0000-0002-9049-7780")),
-    person("Heladia", "Salgado", email = "heladia@ccg.unam.mx",
-        role = c("ctb"), comment = c(ORCID = "0000-0002-3166-5801")),
-    person("Leonardo", "Collado-Torres", role = c("aut"),
+        role = c("aut"), comment = c(ORCID = "0000-0002-9049-7780")),
+    person("Leonardo", "Collado-Torres", role = c("ctb"),
         email = "lcolladotor@gmail.com",
-        comment = c(ORCID = "0000-0003-2140-308X")),
-    person("Alejandro", "Reyes", email = "alejandro.reyes.ds@gmail.com",
-        role = c("aut"), comment = c(ORCID = "0000-0001-8717-6612"))
+        comment = c(ORCID = "0000-0003-2140-308X"))
     )
-Description: This package provides an interface to the RegulonDB
-    http://regulondb.ccg.unam.mx/ database such that you can query it using
-    R and easily work with Bioconductor packages. This package was created
+Description: This package provides an interface to the RSAT collection of
+    web services http://embnet.ccg.unam.mx/rsat/ from R and is integrated in 
+    the Bioconductor ecosystem. This package was created
     as a collaboration by members of the Community of Bioinformatics
     Software Developers (CDSB in Spanish) https://comunidadbioinfo.github.io/.
 License: Artistic-2.0
 Encoding: UTF-8
 Depends: R (>= 3.6.0)
 Imports:
-    AnnotationDbi,
-    AnnotationHub,
-    Biostrings,
-    data.table,
-    DBI,
-    GenomicRanges,
-    Gviz,
-    IRanges,
     httr,
-    RCy3,
-    RSQLite,
-    S4Vectors,
     XML,
-    xml2,
-    methods,
-    stats,
-    utils
+    xml2
 LazyData: true
 RoxygenNote: 7.0.2
 Suggests: 
@@ -54,9 +32,8 @@ Suggests:
     rmarkdown,
     sessioninfo,
     testthat (>= 2.1.0)
-URL: https://github.com/ComunidadBioInfo/regutools
-BugReports: https://github.com/ComunidadBioInfo/regutools/issues
-biocViews: AnnotationData, AnnotationHub, Escherichia_coli,
-    FunctionalAnnotation, CustomDBSchema
+URL: https://github.com/ComunidadBioInfo/RSATtools
+BugReports: https://github.com/ComunidadBioInfo/RSATtools/issues
+biocViews: Software
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr

@@ -1,0 +1,170 @@
+---
+title: "RSATtools: an R package interacting with the RSAT web services"
+author:
+  - name: Joselyn Chávez
+    affiliation:
+    - &ibt Instituto de Biotecnología, Universidad Nacional Autónoma de México, Cuernavaca, Morelos, MX
+    email: joselynchavezf@gmail.com
+  - name: Jose Alquicira Hernandez
+    affiliation:
+    - &ccg Centro de Ciencias Genómicas, Universidad Nacional Autónoma de México, Cuernavaca, Morelos, MX
+    - University of Queensland, Brisbane, QLD, AU
+date: "`r BiocStyle::doc_date()`"
+package: "`r BiocStyle::pkg_ver('RSATtools')`"
+output: 
+  BiocStyle::html_document
+vignette: >
+  %\VignetteIndexEntry{RSATtools: an R package interacting with the RSAT web services}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+    collapse = TRUE,
+    comment = "#>"
+)
+```
+
+```{r vignetteSetup, echo=FALSE, message=FALSE, warning = FALSE}
+## For links
+library('BiocStyle')
+
+## Track time spent on making the vignette
+startTime <- Sys.time()
+
+## Bib setup
+library('knitcitations')
+
+## Load knitcitations with a clean bibliography
+cleanbib()
+cite_options(hyperlink = 'to.doc', citation_format = 'text', style = 'html')
+# Note links won't show for now due to the following issue
+# https://github.com/cboettig/knitcitations/issues/63
+
+## Write bibliography information
+bib <- c(
+    R = citation(),
+    BiocStyle = citation('BiocStyle'),
+    httr = citation('httr'),
+    knitcitations = citation('knitcitations'),
+    knitr = citation('knitr')[3],
+    RSATtools = citation('RSATtools')[1],
+    RSATtoolsPaper = citation('RSATtools')[2],
+    rmarkdown = citation('rmarkdown')[1],
+    sessioninfo = citation('sessioninfo'),
+    testthat = citation('testthat'),
+    XML = citation('XML'),
+    xml2 = citation('xml2')
+)
+```
+
+# Basics
+
+## Install `RSATtools`
+
+`R` is an open-source statistical environment which can be easily modified to enhance its functionality via packages. `r Biocpkg('RSATtools')` is a `R` package available via Bioconductor. `R` can be installed on any operating system from [CRAN](https://cran.r-project.org/) after which you can install `r Biocpkg('RSATtools')` by using the following commands in your `R` session:
+
+```{r 'install', eval = FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("RSATtools")
+
+## Check that you have a valid Bioconductor installation
+BiocManager::valid()
+```
+
+## Required knowledge
+
+`r Biocpkg('RSATtools')` is based on many other packages and in particular in those that have implemented the infrastructure needed for dealing with genomic and sequence data. That is, packages like `r Biocpkg('Biostrings')` that allow you to work with sequences and `r Biocpkg('GenomicRanges')` for data on genomic coordinates. A `r Biocpkg('RSATtools')` user is not expected to deal with those packages directly but will need to be familiar with them to understand the results `r Biocpkg('RSATtools')` generates.
+
+If you are asking yourself the question "Where do I start using Bioconductor?" you might be interested in [this blog post](http://lcolladotor.github.io/2014/10/16/startbioc/#.VkOKbq6rRuU).
+
+## Asking for help
+
+As package developers, we try to explain clearly how to use our packages and in which order to use the functions. But `R` and `Bioconductor` have a steep learning curve so it is critical to learn where to ask for help. The blog post quoted above mentions some but we would like to highlight the [Bioconductor support site](https://support.bioconductor.org/) as the main resource for getting help regarding Bioconductor. Other alternatives are available such as creating GitHub issues and tweeting. However, please note that if you want to receive help you should adhere to the [posting guidelines](http://www.bioconductor.org/help/support/posting-guide/). It is particularly critical that you provide a small reproducible example and your session information so package developers can track down the source of the error.
+
+## Citing `RSATtools`
+
+We hope that `r Biocpkg('RSATtools')` will be useful for your research. Please use the following information to cite the package and the overall approach. Thank you!
+
+```{r 'citation'}
+## Citation info
+citation('RSATtools')
+```
+
+# Overview
+
+* `r Biocpkg('RSATtools')` package `r citep(bib[['RSATtools']])`
+* Paper  `r citep(bib[['RSATtoolsPaper']])`. 
+
+
+# A note about CDSB
+
+This was a project accomplished by members of the [Community of Bioinformatics Software Developers](https://comunidadbioinfo.github.io/) (CDSB in Spanish). In part CDSB was formed to help R users in Latin America become R/[Bioconductor](http://bioconductor.org/) developers. For more information about CDSB, the CDSB workshops or its online community, please check the [CDSB website](https://comunidadbioinfo.github.io/) which is available in both Spanish and English.
+
+<img src="https://comunidadbioinfo.github.io/img/Logo_texto-768x107.png">
+
+# Reproducibility
+
+The `r Biocpkg('RSATtools')` package `r citep(bib[['RSATtools']])` was made possible thanks to:
+
+* R `r citep(bib[['R']])`
+* `r Biocpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`
+* `r CRANpkg('httr')` `r citep(bib[['httr']])`
+* `r CRANpkg('knitcitations')` `r citep(bib[['knitcitations']])`
+* `r CRANpkg('knitr')` `r citep(bib[['knitr']])`
+* `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])`
+* `r CRANpkg('sessioninfo')` `r citep(bib[['sessioninfo']])`
+* `r CRANpkg('testthat')` `r citep(bib[['testthat']])`
+* `r CRANpkg('XML')` `r citep(bib[['XML']])`
+* `r CRANpkg('xml2')` `r citep(bib[['xml2']])`
+
+Code for creating the vignette
+
+```{r createVignette, eval=FALSE}
+## Create the vignette
+library('rmarkdown')
+system.time(render('RSATtools.Rmd'))
+
+## Extract the R code
+library('knitr')
+knit('RSATtools.Rmd', tangle = TRUE)
+```
+
+
+Date the vignette was generated.
+
+```{r reproduce1, echo=FALSE}
+## Date the vignette was generated
+Sys.time()
+```
+
+Wallclock time spent generating the vignette.
+
+```{r reproduce2, echo=FALSE}
+## Processing time in seconds
+totalTime <- diff(c(startTime, Sys.time()))
+round(totalTime, digits=3)
+```
+
+`R` session information.
+
+```{r reproduce3, echo=FALSE}
+## Session info
+library('sessioninfo')
+options(width = 120)
+session_info()
+```
+
+# Bibliography
+
+This vignette was generated using `r Biocpkg('BiocStyle')` `r citep(bib[['BiocStyle']])`, `r CRANpkg('knitr')` `r citep(bib[['knitr']])` and `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])` running behind the scenes.
+
+Citations were made with `r CRANpkg('knitcitations')` `r citep(bib[['knitcitations']])`.
+
+```{r vignetteBiblio, results = 'asis', echo = FALSE, warning = FALSE, message = FALSE}
+## Print bibliography
+bibliography()
+```

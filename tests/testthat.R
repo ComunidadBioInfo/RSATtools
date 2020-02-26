@@ -1,4 +1,4 @@
 library('testthat')
-library('regutools')
+library('RSATtools')
 
-test_check("regutools")
+test_check("RSATtools")
